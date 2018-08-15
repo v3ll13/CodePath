@@ -222,5 +222,6 @@
     <string name="server_client_id">1051032210035-oi2vga5rtnbshkk73s97a1kcjsnlhtdr.apps.googleusercontent.com</string>
     <string name="signing_in">Signed In</string>
     <string name="signed_out">Signed out</string>
+    <string name="title_activity_mainmenue">Mainmenue</string>
 
 </resources>
