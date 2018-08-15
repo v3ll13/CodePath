@@ -62,7 +62,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         // [END customize_button]
 
     }
-    
+
+
 
     // [START onActivityResult]
     @Override
@@ -83,9 +84,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-
             // Signed in successfully, show authenticated UI.
             updateUI(account);
+            Intent myIntent = new Intent(LoginActivity.this, TestActivity.class);
+            startActivity(myIntent);
+            finish();
+
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
@@ -138,7 +142,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
     }
-
 
     private void updateUI(@Nullable GoogleSignInAccount account) {
         if (account != null) {
