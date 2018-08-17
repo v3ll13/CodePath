@@ -86,7 +86,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             // Signed in successfully, show authenticated UI.
             updateUI(account);
-            Intent myIntent = new Intent(LoginActivity.this, Mainmenue.class);
+            Intent myIntent = new Intent(LoginActivity.this, MenueDrawer.class);
             startActivity(myIntent);
             finish();
 
