@@ -92,15 +92,14 @@ public class MenueDrawer extends AppCompatActivity {
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-
-                getActionBar().setTitle("Queenyy");
+                getSupportActionBar().setTitle("Queenyy");
                 invalidateOptionsMenu();
             }
 
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
-                getActionBar().setTitle(mActivityTitle);
+                getSupportActionBar().setTitle(mActivityTitle);
                 invalidateOptionsMenu();
             }
         };
@@ -141,8 +140,8 @@ public class MenueDrawer extends AppCompatActivity {
                     navigationManage.showFragment(selectedItem);
 
                 else
-                    throw new IllegalArgumentException("Not a supported Fragment");
-                    mDrawerLayout.closeDrawer(GravityCompat.START);
+                     throw new IllegalArgumentException("Not a supported Fragment");
+                     mDrawerLayout.closeDrawer(GravityCompat.START);
 
                     return false;
             }

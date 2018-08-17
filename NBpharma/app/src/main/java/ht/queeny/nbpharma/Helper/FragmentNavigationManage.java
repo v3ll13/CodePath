@@ -3,6 +3,8 @@ package ht.queeny.nbpharma.Helper;
 import android.app.Fragment;
 import android.app.FragmentManager;
 
+
+import ht.queeny.nbpharma.Fragments.FragmentContent;
 import ht.queeny.nbpharma.Interface.NavigationManage;
 import ht.queeny.nbpharma.MenueDrawer;
 
@@ -30,6 +32,12 @@ public class FragmentNavigationManage implements NavigationManage{
 
     }
         public void showFragment(String title){
+
+            showFragment(FragmentContent.newInstance(title),false);
+
+        }
+
+        public void showFragment(FragmentContent fragmentContent, boolean allowStateLoss){
 
         }
 }

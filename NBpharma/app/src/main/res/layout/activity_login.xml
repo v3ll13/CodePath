@@ -17,6 +17,7 @@
         android:padding="16dp"
         android:text="Register and Sign in"
         android:textAllCaps="true"
+        android:textColor="@color/colorGray"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -68,10 +69,10 @@
         android:layout_marginTop="32dp"
         android:padding="2dp"
         android:text="-------------  OR  --------------"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="18sp"
-        android:textStyle="bold"
 
-        />
+        android:textStyle="bold" />
 
 
     <LinearLayout

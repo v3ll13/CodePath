@@ -22,7 +22,7 @@ public class FragmentContent extends Fragment {
 
 
     // TODO: Rename and change types and number of parameters
-    public static FragmentContent newInstance(String param1, String param2) {
+    public static FragmentContent newInstance(String param1) {
         FragmentContent fragment = new FragmentContent();
         Bundle args = new Bundle();
         args.putString(KEY_TITLE, param1);
