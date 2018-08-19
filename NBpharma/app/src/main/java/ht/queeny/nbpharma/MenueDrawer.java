@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -47,9 +48,18 @@ public class MenueDrawer extends AppCompatActivity {
         mActivityTitle = getTitle().toString();
         expandableListView =(ExpandableListView)findViewById(R.id.nav_list);
         navigationManage = FragmentNavigationManage.getmInstance(this);
+        String email = getIntent().getStringExtra("email");
+        String namee = getIntent().getStringExtra("name");
 
         initItems();
         View listHeaderView = getLayoutInflater().inflate(R.layout.nav_header, null, false);
+        TextView name = listHeaderView.findViewById(R.id.balance);
+        TextView emaill = listHeaderView.findViewById(R.id.Email);
+        name.setText(namee);
+        emaill.setText(email);
+
+
+
         expandableListView.addHeaderView(listHeaderView);
         
         genData();
@@ -61,7 +71,7 @@ public class MenueDrawer extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Quennyyy");
+        getSupportActionBar().setTitle("NBPharma");
 
         
     }
@@ -92,7 +102,7 @@ public class MenueDrawer extends AppCompatActivity {
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                getSupportActionBar().setTitle("Queenyy");
+                getSupportActionBar().setTitle("NBPharma");
                 invalidateOptionsMenu();
             }
 
@@ -121,7 +131,7 @@ public class MenueDrawer extends AppCompatActivity {
         expandableListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
             @Override
             public void onGroupCollapse(int groupPosition) {
-                getSupportActionBar().setTitle("Queeny");
+                getSupportActionBar().setTitle("NBPharma");
 
             }
 
@@ -140,7 +150,7 @@ public class MenueDrawer extends AppCompatActivity {
                     navigationManage.showFragment(selectedItem);
 
                 else
-                     throw new IllegalArgumentException("Not a supported Fragment");
+                     //throw new IllegalArgumentException("Not a supported Fragment");
                      mDrawerLayout.closeDrawer(GravityCompat.START);
 
                     return false;

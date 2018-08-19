@@ -10,9 +10,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.backendless.Backendless;
+import com.backendless.BackendlessUser;
+import com.backendless.async.callback.AsyncCallback;
+import com.backendless.exceptions.BackendlessFault;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -36,6 +42,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private GoogleSignInClient mGoogleSignInClient;
     private GoogleApiClient mGoogleApiClient;
     private static final int RC_SIGN_IN = 9001;
+    Button btnLogin;
+    EditText UserName;
+    EditText Password;
 
 
     @Override
@@ -61,6 +70,50 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         signInButton.setColorScheme(SignInButton.COLOR_LIGHT);
         // [END customize_button]
 
+        UserName = findViewById(R.id.etUserName);
+        Password= findViewById(R.id.etPassword);
+        btnLogin = findViewById(R.id.btnLogin);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UserName.getText().toString();
+                Password.getText().toString();
+
+                if(UserName.getText().toString() != "" &&  Password.getText().toString() != ""){
+                    get_login_user(UserName.getText().toString(), Password.getText().toString());
+                }else{
+                    Toast.makeText(LoginActivity.this, "empty", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+    }
+
+
+    private void get_login_user(String username, String password) {
+        // do not forget to call Backendless.initApp in the app initialization code
+
+        Backendless.UserService.login( username, password, new AsyncCallback<BackendlessUser>()
+        {
+            public void handleResponse( BackendlessUser user )
+            {
+                // user has been logged in
+                //user.getEmail();
+
+                Toast.makeText(LoginActivity.this, ""+user.getProperty("name"), Toast.LENGTH_SHORT).show();
+                Intent myIntent = new Intent(LoginActivity.this, MenueDrawer.class);
+                myIntent.putExtra("email",user.getEmail());
+                myIntent.putExtra("name",user.getProperty("name").toString());
+                startActivity(myIntent);
+                finish();
+            }
+
+            public void handleFault( BackendlessFault fault )
+            {
+                // login failed, to get the error code call fault.getCode()
+            }
+        });
     }
 
 

@@ -15,7 +15,6 @@ public class FragmentContent extends Fragment {
 
     private static final String KEY_TITLE= "Content";
 
-
     public FragmentContent() {
         // Required empty public constructor
     }
