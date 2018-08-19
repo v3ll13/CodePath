@@ -2,6 +2,8 @@ package ht.queeny.nbpharma;
 
 import android.content.res.Configuration;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -23,6 +25,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import ht.queeny.nbpharma.Adapter.CustomExpendableListAdapter;
+import ht.queeny.nbpharma.Fragments.FragmentContent;
 import ht.queeny.nbpharma.Helper.FragmentNavigationManage;
 import ht.queeny.nbpharma.Interface.NavigationManage;
 
@@ -38,6 +41,8 @@ public class MenueDrawer extends AppCompatActivity {
     private List<String> listTitle;
     private Map<String ,List<String>> listChild;
     private NavigationManage navigationManage;
+
+    private FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,12 +151,25 @@ public class MenueDrawer extends AppCompatActivity {
                 getSupportActionBar().setTitle(selectedItem);
 
 
-                if(items[0].equals(listTitle.get(groupPosition)))
-                    navigationManage.showFragment(selectedItem);
 
-                else
-                     //throw new IllegalArgumentException("Not a supported Fragment");
-                     mDrawerLayout.closeDrawer(GravityCompat.START);
+                if(selectedItem  == "Liste Medicament"){
+                    //navigationManage.showFragment(selectedItem);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("fragmentContent", 1);
+
+                    FragmentContent fragmentContent = new FragmentContent();
+                    fragmentContent.setArguments(bundle);
+                    //
+                    onFragmentTransaction(fragmentContent);
+
+                }
+                else{
+                    //throw new IllegalArgumentException("Not a supported Fragment");
+                    mDrawerLayout.closeDrawer(GravityCompat.START);
+                }
+
+                mDrawerLayout.closeDrawer(GravityCompat.START);
+
 
                     return false;
             }
@@ -169,6 +187,12 @@ public class MenueDrawer extends AppCompatActivity {
         listChild.put(title.get(3), childitem);
 
         listTitle = new ArrayList<>(listChild.keySet());
+    }
+
+    public void onFragmentTransaction(Fragment fragment){
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.container, fragment);
+        fragmentTransaction.commit();
     }
 
     private void initItems() {

@@ -88,6 +88,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
 
+        Intent myIntent = new Intent(LoginActivity.this, MenueDrawer.class);
+        startActivity(myIntent);
+        finish();
+
     }
 
 
@@ -200,7 +204,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (account != null) {
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
         } else {
-            mStatus.setText(R.string.signed_out);
+            //mStatus.setText("Signed out");
             findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
 
         }
